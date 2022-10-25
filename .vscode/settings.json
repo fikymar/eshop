@@ -1,0 +1,15 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "reactSnippets.settings.prettierEnabled": true,
+  "prettier.endOfLine": "auto",
+  "prettier.jsxSingleQuote": true,
+  "prettier.printWidth": 120,
+  "prettier.requireConfig": true,
+  "prettier.singleQuote": true,
+  "prettier.singleAttributePerLine": true,
+  "prettier.tabWidth": 4,
+  "prettier.useTabs": true,
+  "editor.detectIndentation": false
+}
