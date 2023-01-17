@@ -1,17 +1,38 @@
-import type { NextPage } from "next";
-import Head from "next/head";
+import { useEffect, useState } from 'react';
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
-  return (
-    <div>
-      <Head>
-        <title>Heaven is a halfpipe</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+	const [title, setTitle] = useState('first option');
 
-      <div>Home</div>
-    </div>
-  );
+	useEffect(() => {
+		// window.onblur = function () {
+		// 	setTitle("Where are you?");
+		// };
+
+		// window.onfocus = function () {
+		// 	setTitle("Focus");
+		// };
+
+		document.addEventListener('visibilitychange', (event) => {
+			if (document.visibilityState == 'visible') {
+				setTitle('We glad you are back');
+			} else {
+				setTitle('Where are you?');
+			}
+		});
+	}, []);
+
+	return (
+		<div>
+			<Head>
+				<title>{title}</title>
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+
+			<div>Home</div>
+		</div>
+	);
 };
 
 export default Home;

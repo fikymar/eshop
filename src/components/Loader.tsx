@@ -1,14 +1,16 @@
-import React from "react";
+import React from 'react';
 
-const Loader = () => {
-  return (
-    <div className="relative">
-      <div className="shadow-md animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-pink-500"></div>
-      <p className="animate-pulse absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        Waiting...
-      </p>
-    </div>
-  );
+type ILoader = {
+	full?: boolean;
+};
+
+const Loader = ({ full }: ILoader) => {
+	return (
+		<div className={`flex ${full ? 'h-screen w-screen' : 'h-full w-full'}   flex-col items-center justify-center`}>
+			<div className="h-32 w-32 animate-spin rounded-full border-t-2 border-b-2 border-pink-500 shadow-md"></div>
+			<p className="animate-pulse">Waiting...</p>
+		</div>
+	);
 };
 
 export default Loader;
