@@ -45,3 +45,13 @@ body {
 .bgr-light {
 	background-image: linear-gradient(to right bottom, #ddd7c6, #ebddd2, #f5e4e0, #fbedee, #fff6fb);
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}

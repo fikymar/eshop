@@ -1,23 +1,78 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 import Button from './button';
 import Link from 'next/link';
 import { IData } from '../constants/models';
 import { Cart } from '../constants/icons';
 import { motion } from 'framer-motion';
+import { cartActions } from '../context/cart-slice';
+import IconButton from './IconButton';
 
-const CartContainer = ({}: IData) => {
+const CartContainer = () => {
+	const dispatch = useDispatch();
+	const cartItems = useSelector((state: any) => state.cartData.items);
+
+	const clearCart = () => {
+		dispatch(cartActions.clearCartItems);
+		console.log('delete itemr', cartItems);
+	};
+
+	const deleteItem = (id) => {
+		dispatch(cartActions.deleteItemFromCart(id));
+		console.log('clear', cartItems);
+	};
+
 	return (
 		<motion.div
 			initial={{ x: 1000, opacity: 0 }}
 			animate={{ x: 0, opacity: 1 }}
 			exit={{ x: 1000, opacity: 0 }}
-			className="fixed top-0 right-0 z-40 h-[100vh] w-full bg-slate-100 px-4 pt-[6rem]  shadow-md dark:bg-zinc-500 md:w-1/3 xl:w-3/12"
+			className="fixed top-0 right-0 z-40 h-screen w-full bg-slate-100 px-4 pt-[6rem]  shadow-md dark:bg-zinc-500 md:w-1/3 xl:w-3/12"
 		>
-			<div className="flex w-full items-center justify-between ">cart</div>
-			<div className="h-full w-full ">
-				{/* <Image src={} width={100} height={100} alt="" /> */}
-				<p>5</p>
+			<button onClick={() => clearCart()}>clear cart</button>
+			<div className="scrollbar-hide h-[50vh] overflow-y-scroll py-5 shadow-inner">
+				<div className="grid h-full w-full gap-5 ">
+					{cartItems.map((item) => {
+						return (
+							<div
+								key={item.id}
+								className="grid h-[150px] grid-cols-3 grid-rows-1 items-center justify-between gap-1"
+							>
+								<Image
+									src={item.imgURL}
+									width={100}
+									height={100}
+									alt="product image"
+									className="row-span-2 h-auto object-cover"
+								/>
+								<h3>{item.title}</h3>
+								<h3 className="justify-self-end text-xl">{item.price} $</h3>
+								<div className="col-span-2 col-start-2 flex items-center  gap-5">
+									<IconButton onClick={() => console.log('click')}>-</IconButton>
+									<p>am</p>
+									<IconButton onClick={() => console.log('click')}>+</IconButton>
+									<IconButton onClick={() => deleteItem(item.id)}>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke-width="1.5"
+											stroke="currentColor"
+											className="h-6 w-6"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+											/>
+										</svg>
+									</IconButton>
+								</div>
+							</div>
+						);
+					})}
+				</div>
 			</div>
 		</motion.div>
 	);

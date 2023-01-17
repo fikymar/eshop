@@ -95,7 +95,7 @@ const Products: NextPage = () => {
 						</Tilt>
 						{filter !== ''
 							? products.products
-									.filter((product) => product.category === filter)
+									.filter((product: any) => product.category === filter)
 									.map((product: any) => {
 										return (
 											<ProductCard
@@ -105,6 +105,7 @@ const Products: NextPage = () => {
 												description={product.description}
 												imgURL={product.imgURL}
 												price={product.price}
+												item={product}
 											/>
 										);
 									})
@@ -117,6 +118,7 @@ const Products: NextPage = () => {
 											description={product.description}
 											imgURL={product.imgURL}
 											price={product.price}
+											item={product}
 										/>
 									);
 							  })}

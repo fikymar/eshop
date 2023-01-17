@@ -12,6 +12,7 @@ import { routes } from '../constants/routes';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import { Logo, Sun, Moon, Search, Cart } from '../constants/icons.js';
 import { cartActions } from '../context/cart-slice';
+import IconButton from './IconButton';
 
 const Header = () => {
 	const [isEnabled, setIsEnabled] = useState(false);
@@ -28,7 +29,7 @@ const Header = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		console.log(cartItems, 'items');
+		console.log('length', cartItems.length);
 	}, [cartItems]);
 
 	// useEffect(function () {
@@ -70,7 +71,7 @@ const Header = () => {
 	return (
 		<>
 			<motion.header
-				className={`font-effect-3d sticky top-0 z-50 flex items-center justify-between px-8 pb-2 pt-3 backdrop-blur-sm `}
+				className={`sticky top-0 z-50 flex items-center justify-between px-8 pb-2 pt-3 backdrop-blur-sm `}
 			>
 				{/* mobile nav */}
 				<div className="md:hidden">
@@ -95,7 +96,7 @@ const Header = () => {
 					<Link href={routes.home}>{Logo}</Link>
 				</div>
 
-				<nav className="nav hidden text-lg font-semibold md:flex">
+				<nav className="nav font-effect-3d hidden text-lg font-semibold md:flex ">
 					<ul className="flex items-center">
 						{MenuItems.map((item) => {
 							return (
@@ -116,43 +117,39 @@ const Header = () => {
 				</nav>
 
 				<div
-					className={`flex items-center justify-end ${
+					className={`md:justify-endgap-2 flex flex-wrap items-center justify-center  ${
 						(showCart || open) && theme === 'light' ? 'text-zinc-500' : 'text-zinc-500 dark:text-slate-200'
 					}`}
 				>
 					{showCart && (
-						<motion.button
+						<IconButton
 							initial={{ x: 300, scale: 0.5 }}
 							animate={{ x: 0, scale: 1 }}
 							exit={{ x: 300, scale: 0.5 }}
-							whileTap={{ scale: 0.6 }}
-							type="button"
 							onClick={showCartModal}
-							className=" mr-5 flex h-10 w-10 items-center justify-center rounded-full border-2 border-zinc-500 p-2.5 text-lg font-bold"
 						>
 							X
-						</motion.button>
+						</IconButton>
 					)}
-					<button
+					<IconButton
 						id="theme-toggle"
-						type="button"
+						addClass="border-none focus:ring-current focus:ring-2"
 						onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-						className="mr-2 rounded-full p-2.5 text-sm  hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
 					>
 						{theme === 'light' ? Sun : Moon}
-					</button>
-					<Link href="">
+					</IconButton>
+					{/* <Link href="">
 						<div className="relative h-6 md:h-8">{Search}</div>
-					</Link>
+					</Link> */}
 
-					<div className={`relative h-6 w-6  md:h-6`} onClick={showCartModal}>
+					<IconButton addClass={`relative  border-none `} onClick={showCartModal}>
 						{cartItems.length > 0 && (
 							<div className=" absolute -top-2 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-pink-500 md:h-5 md:w-5">
-								<p className="text-[10px] font-bold text-white md:text-xs">{cartItems.length}</p>
+								<p className="text-[10px] font-bold text-white md:text-xs"> {cartItems.length}</p>
 							</div>
 						)}
 						{Cart}
-					</div>
+					</IconButton>
 
 					{isLoggedIn ? (
 						<motion.img

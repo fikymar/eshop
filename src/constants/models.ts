@@ -5,4 +5,5 @@ export type IData = {
 	category: string;
 	description: string;
 	price: number;
+	item: any;
 };

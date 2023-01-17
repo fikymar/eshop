@@ -16,7 +16,13 @@ export const cartSlice = createSlice({
 			state.cartShow = false;
 		},
 		setCartItems(state, action) {
-			state.items = action.payload;
+			state.items.push(action.payload);
+		},
+		clearCartItems(state) {
+			state.items.splice(0, state.items.length);
+		},
+		deleteItemFromCart(state, { payload }) {
+			state.items = state.items.filter(({ id }) => id != payload);
 		},
 	},
 });
