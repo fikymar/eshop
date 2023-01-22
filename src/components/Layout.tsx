@@ -21,7 +21,7 @@ const Layout = ({ children }: any) => {
 	}, [cartShow, cartItems]);
 
 	return (
-		<div className="relative grid h-fit min-h-screen w-screen grid-rows-[auto_1rem_1fr_auto] overflow-x-hidden bg-slate-300 text-stone-800  dark:bg-slate-500 dark:text-zinc-100">
+		<div className="relative grid min-h-screen  auto-rows-auto bg-slate-100  text-zinc-800  dark:bg-zinc-500 dark:text-zinc-100">
 			<Header />
 			{children}
 

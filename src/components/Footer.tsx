@@ -2,15 +2,8 @@ import React from 'react';
 
 const Footer = () => {
 	return (
-		<footer className="flex h-24 w-screen items-center  justify-center self-end border-t">
-			<a
-				className="flex items-center justify-center gap-2"
-				href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				Powered by
-			</a>
+		<footer className="mt-8 self-end border-t-2 border-zinc-500 py-2 text-center dark:border-slate-200">
+			Created by <a href="https://github.com/fikymar">Fikymar </a> 2023
 		</footer>
 	);
 };

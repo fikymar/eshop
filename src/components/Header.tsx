@@ -28,14 +28,6 @@ const Header = () => {
 	const showCart = useSelector((state: any) => state.cartData.cartShow);
 	const router = useRouter();
 
-	useEffect(() => {
-		console.log('length', cartItems.length);
-	}, [cartItems]);
-
-	// useEffect(function () {
-	// 	console.log(window.localStorage);
-	// }, []);
-
 	const login = async () => {
 		if (!isLoggedIn && !open) {
 			const { user } = await signInWithPopup(firebaseAuth, provider);
@@ -63,16 +55,14 @@ const Header = () => {
 	};
 
 	const MenuItems = [
+		{ title: 'Home', link: routes.home },
 		{ title: 'Add New Item', link: routes.addItem },
 		{ title: 'Products', link: routes.products },
-		{ title: 'Third', link: '/' },
 	];
 
 	return (
 		<>
-			<motion.header
-				className={`sticky top-0 z-50 flex items-center justify-between px-8 pb-2 pt-3 backdrop-blur-sm `}
-			>
+			<motion.header className="sticky top-0 z-50 flex h-fit w-full items-center justify-between p-2 backdrop-blur-sm md:px-4">
 				{/* mobile nav */}
 				<div className="md:hidden">
 					<button className="group relative">
@@ -92,22 +82,30 @@ const Header = () => {
 				</div>
 
 				{/* logo */}
-				<div className="">
-					<Link href={routes.home}>{Logo}</Link>
-				</div>
 
-				<nav className="nav font-effect-3d hidden text-lg font-semibold md:flex ">
+				<Link
+					className="font-sigmarone group flex items-start justify-center text-xl  md:text-2xl"
+					href={routes.home}
+				>
+					Shopi
+					<span className="text-yellow-500  group-hover:text-sky-500">ik</span>
+					<span className="ml-0.5 flex h-5 w-5  rounded-full border border-zinc-500 stroke-2 p-1 text-yellow-500 group-hover:text-sky-500 dark:border-slate-300">
+						{Cart}
+					</span>
+				</Link>
+
+				<nav className="nav  hidden text-lg font-semibold md:flex ">
 					<ul className="flex items-center">
 						{MenuItems.map((item) => {
 							return (
 								<li
 									key={item.title}
-									className="active cursor-pointerflex group  flex-col border-pink-500 border-opacity-0 p-4  duration-200  dark:text-white "
+									className="active cursor-pointerflex group  flex-col  border-opacity-0 p-4  duration-200  dark:text-white "
 								>
 									<Link href={item.link}>{item.title}</Link>
 									<p
 										className={`underline-h ${
-											router.pathname === item.link ? 'w-[2ch]' : 'w-0'
+											router.pathname === item.link ? 'w-[1ch]' : 'w-0'
 										} group-hover:w-full`}
 									></p>
 								</li>
@@ -117,23 +115,30 @@ const Header = () => {
 				</nav>
 
 				<div
-					className={`md:justify-endgap-2 flex flex-wrap items-center justify-center  ${
-						(showCart || open) && theme === 'light' ? 'text-zinc-500' : 'text-zinc-500 dark:text-slate-200'
+					className={`flex flex-wrap items-center justify-center gap-2 md:justify-end  ${
+						showCart && cartItems.length === 0 ? 'text-zinc-500' : 'text-zinc-500 dark:text-slate-200'
 					}`}
 				>
-					{showCart && (
-						<IconButton
-							initial={{ x: 300, scale: 0.5 }}
-							animate={{ x: 0, scale: 1 }}
-							exit={{ x: 300, scale: 0.5 }}
-							onClick={showCartModal}
-						>
-							X
-						</IconButton>
-					)}
+					<AnimatePresence>
+						{showCart && (
+							<IconButton
+								initial={{ x: 1000 }}
+								animate={{ x: 0 }}
+								exit={{ x: 1000 }}
+								transition={{
+									type: 'spring',
+									stiffness: 300,
+									damping: 20,
+								}}
+								onClick={showCartModal}
+							>
+								X
+							</IconButton>
+						)}
+					</AnimatePresence>
 					<IconButton
 						id="theme-toggle"
-						addClass="border-none focus:ring-current focus:ring-2"
+						addClass="border-none focus:ring-current focus:ring-2 items-stretch p-2"
 						onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 					>
 						{theme === 'light' ? Sun : Moon}
@@ -142,12 +147,12 @@ const Header = () => {
 						<div className="relative h-6 md:h-8">{Search}</div>
 					</Link> */}
 
-					<IconButton addClass={`relative  border-none `} onClick={showCartModal}>
-						{cartItems.length > 0 && (
+					<IconButton addClass=" items-stretch p-2 border-none" onClick={showCartModal}>
+						{/* {cartItems.length > 0 ? (
 							<div className=" absolute -top-2 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-pink-500 md:h-5 md:w-5">
 								<p className="text-[10px] font-bold text-white md:text-xs"> {cartItems.length}</p>
 							</div>
-						)}
+						) : null} */}
 						{Cart}
 					</IconButton>
 

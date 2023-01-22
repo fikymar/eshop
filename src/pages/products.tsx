@@ -55,9 +55,9 @@ const Products: NextPage = () => {
 				<title>{title}</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className="mx-10 grid place-items-center">
+			<div className="grid place-items-center">
 				<div className="relative z-10 h-full w-full items-center justify-center overflow-auto">
-					<div className="relative z-20 grid h-full w-full grid-cols-1 gap-4  p-4 md:grid-cols-2 md:grid-rows-4 lg:grid-cols-3 xl:grid-cols-4 ">
+					<div className="relative z-20 grid h-full w-full grid-cols-1 gap-4 p-2 md:grid-cols-2 md:grid-rows-4 md:p-4 lg:grid-cols-3 xl:grid-cols-4 ">
 						{/* {products.products.filter((product) => product.category === 'men').map((product: any) => {
 							return (
 								<ProductCard
@@ -71,7 +71,7 @@ const Products: NextPage = () => {
 							)
 						)}} */}
 						<Tilt
-							className="relative flex h-40 w-40 flex-col items-center justify-between self-center justify-self-center rounded-xl bg-pink-500 text-white dark:bg-zinc-600 md:h-80 md:w-80 "
+							className="relative flex h-40 w-40 flex-col items-center justify-between self-center justify-self-center rounded-xl bg-sky-500 text-white dark:bg-yellow-600 md:h-80 md:w-80 "
 							tiltReverse={true}
 							glareColor="white"
 							perspective={500}
@@ -105,7 +105,7 @@ const Products: NextPage = () => {
 												description={product.description}
 												imgURL={product.imgURL}
 												price={product.price}
-												item={product}
+												id={product.id}
 											/>
 										);
 									})
@@ -118,7 +118,7 @@ const Products: NextPage = () => {
 											description={product.description}
 											imgURL={product.imgURL}
 											price={product.price}
-											item={product}
+											id={product.id}
 										/>
 									);
 							  })}

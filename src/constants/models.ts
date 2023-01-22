@@ -4,6 +4,13 @@ export type IData = {
 	imgURL?: any;
 	category: string;
 	description: string;
-	price: number;
-	item: any;
+	price: any;
+};
+
+export type CartItem = {
+	id: string;
+	title: string;
+	imgURL?: any;
+	qty: number;
+	price: any;
 };

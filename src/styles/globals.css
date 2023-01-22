@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
 body {
 	scroll-behavior: smooth;
-	font-family: 'Work Sans', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 300;
+	overflow-x: hidden;
 }
 
 * {
@@ -17,28 +17,16 @@ body {
 
 .underline-h {
 	background-color: rgb(236, 72, 153);
-	height: 3px;
-	margin-top: 2px;
-
+	height: 2px;
+	margin-top: 0;
 	transition: all 0.3s ease-in-out;
 }
 
+.font-sigmarone {
+	font-family: 'Sigmar One', cursive;
+}
+
 .bgr-dark {
-	/* background-image: linear-gradient(
-		to right bottom,
-		#393035,
-		#3f383e,
-		#453f47,
-		#4b4851,
-		#50505a,
-		#595d67,
-		#636a74,
-		#6c7781,
-		#7d8c95,
-		#8ea2a8,
-		#a2b9bb,
-		#b7cfcd
-	); */
 	background-image: linear-gradient(to right bottom, #bca5ae, #a18b93, #87717a, #6d5861, #554149);
 }
 

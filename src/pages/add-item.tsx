@@ -16,7 +16,7 @@ const CreateItem = () => {
 	const [msg, setMsg] = useState('');
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
-	const [price, setPrice] = useState<number>(0);
+	const [price, setPrice] = useState<string | number>(0);
 	const [fields, setFields] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -122,39 +122,24 @@ const CreateItem = () => {
 		}
 	};
 
-	type IInput = {
-		value: string | number;
-		onChange: (e: any) => void;
-		placeholder: string;
-	};
-
-	const Input = ({ value, onChange, placeholder }: IInput) => {
-		return (
-			<div className="mb-4 flex w-full items-center gap-2 border-b-2 border-gray-200 py-2">
-				<input
-					type="text"
-					required
-					value={value}
-					placeholder={placeholder}
-					className="h-full w-full border-none bg-transparent px-4 text-lg outline-none placeholder:text-stone-500 dark:placeholder:text-zinc-100"
-					onChange={onChange}
-				></input>
-			</div>
-		);
-	};
-
 	return (
-		<form className="w-7/8 m-auto flex min-h-screen flex-col items-center gap-2 md:w-1/2">
+		<form className="m-auto flex min-h-screen w-full flex-col items-center gap-2 px-4 xl:w-1/2">
 			{fields && (
 				<p
-					className={`w-full rounded-lg p-4 text-center text-base font-bold ${
-						alertStatus === 'danger' ? 'bg-red-500' : 'bg-green-500'
+					className={`w-full rounded-lg bg-slate-200 p-4 text-center text-base  ${
+						alertStatus === 'danger' ? 'text-red-500' : 'text-green-500'
 					}`}
 				>
 					{msg}
 				</p>
 			)}
-			<Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Item title" />
+			<input
+				type="text"
+				className="mb-4 flex h-full w-full items-center gap-2 border-b-2 border-zinc-800 bg-transparent py-2 px-4 text-lg outline-none placeholder:text-stone-500 focus:border-pink-500 dark:border-slate-200 dark:placeholder:text-zinc-100 "
+				value={title}
+				onChange={(e) => setTitle(e.target.value)}
+				placeholder="Item title"
+			/>
 
 			<div className="group grid h-60 w-full cursor-pointer place-items-center rounded-lg border-2 border-gray-200 bg-slate-100 dark:bg-slate-300 md:h-80">
 				{isLoading ? (
@@ -180,13 +165,7 @@ const CreateItem = () => {
 						) : (
 							<>
 								<div className="relative flex h-full w-full ">
-									<Image
-										src={img}
-										alt="upload image"
-										className="h-full w-full"
-										fill
-										objectFit="cover"
-									/>
+									<Image src={img} alt="upload image" className="h-full w-full object-cover" fill />
 
 									<Tooltip
 										className="absolute left-1/2 right-1/2 bottom-5 -translate-x-1/2"
@@ -218,32 +197,44 @@ const CreateItem = () => {
 			</div>
 
 			<div className="flex w-full flex-col items-center gap-3 md:flex-row">
-				<Input value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
-				<Input value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price" />
+				<input
+					value={description}
+					type="text"
+					onChange={(e) => setDescription(e.target.value)}
+					placeholder="Description"
+					className="mb-4 flex h-full w-full items-center gap-2 border-b-2 border-zinc-800 bg-transparent py-2 px-4 text-lg outline-none placeholder:text-stone-500 focus:border-pink-500 dark:border-slate-200 dark:placeholder:text-zinc-100"
+				/>
+
+				<input
+					type="text"
+					placeholder="Price"
+					onChange={(e) => setPrice(e.target.value)}
+					className="mb-4 flex h-full w-full items-center gap-2 border-b-2 border-zinc-800  bg-transparent py-2 px-4 text-lg outline-none placeholder:text-stone-500 focus:border-pink-500 dark:border-slate-200 dark:placeholder:text-zinc-100"
+				/>
 			</div>
 			<div className="my-4 w-full">
 				<select
 					onChange={(e) => setCategory(e.target.value)}
-					className=" w-full appearance-none border-0 border-b-2 border-gray-200 bg-transparent py-2.5 px-4 focus:border-gray-200 focus:outline-none focus:ring-0"
+					className=" w-full appearance-none border-0 border-b-2 border-zinc-800 bg-transparent py-2.5 px-4 focus:border-gray-200 focus:outline-none focus:ring-0 dark:border-slate-200 "
 					id="category"
 				>
-					<option value="other" className="">
+					<option value="other" className="dark:text-zinc-500">
 						Select category
 					</option>
 
-					<option value="men" className="capitalize">
+					<option value="men" className="font-bold capitalize dark:text-zinc-500">
 						Men ♂️
 					</option>
-					<option value="women" className="capitalize">
+					<option value="women" className="font-bold capitalize dark:text-zinc-500">
 						Women ♀️
 					</option>
-					<option value="women" className="capitalize">
+					<option value="women" className="font-bold capitalize dark:text-zinc-500">
 						Kids 👶
 					</option>
 				</select>
 			</div>
 
-			<Button bgColor="bg-pink" onClick={submit} value="Submit"></Button>
+			<Button bgColor="bg-pink-500" onClick={submit} value="Submit"></Button>
 		</form>
 	);
 };
