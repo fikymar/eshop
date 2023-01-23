@@ -7,6 +7,7 @@ import { IData } from '../constants/models';
 import { Cart } from '../constants/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../context/cart-slice';
+import { shimmer, toBase64 } from '../utils/placeholderImg';
 
 const ProductCard = ({ title, description, price, imgURL, category, id }: IData) => {
 	const dispatch = useDispatch();
@@ -35,6 +36,8 @@ const ProductCard = ({ title, description, price, imgURL, category, id }: IData)
 						fill
 						src={imgURL}
 						alt="product image"
+						placeholder="blur"
+						blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(500, 500))}`}
 					/>
 				)}
 			</div>

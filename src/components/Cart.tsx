@@ -10,6 +10,7 @@ import { cartActions } from '../context/cart-slice';
 import Button from './button';
 import { CartItem } from '../constants/models';
 import ItemCart from './ItemCart';
+import { shimmer, toBase64 } from '../utils/placeholderImg';
 
 const CartContainer = () => {
 	const dispatch = useDispatch();
@@ -75,6 +76,8 @@ const CartContainer = () => {
 						fill
 						className="z-0 object-cover object-[center_top]"
 						alt="empty cart"
+						placeholder="blur"
+						blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1500, 800))}`}
 					/>
 				</>
 			)}

@@ -5,6 +5,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { routes } from '../constants/routes';
 import Button from '../components/button';
+import { shimmer, toBase64 } from '../utils/placeholderImg';
 
 const Home: NextPage = () => {
 	const [title, setTitle] = useState('Home');
@@ -69,6 +70,8 @@ const Home: NextPage = () => {
 							height={800}
 							className="mx-auto mt-6  rounded-tl-full rounded-br-full "
 							alt="hero"
+							placeholder="blur"
+							blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(500, 300))}`}
 						/>
 					</div>
 				</section>

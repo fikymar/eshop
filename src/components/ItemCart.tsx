@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { cartActions } from '../context/cart-slice';
 import IconButton from './IconButton';
 import { CartItem } from '../constants/models';
+import { shimmer, toBase64 } from '../utils/placeholderImg';
 
 const ItemCart = (item: any) => {
 	const dispatch = useDispatch();
@@ -54,6 +55,8 @@ const ItemCart = (item: any) => {
 						height={110}
 						alt="product image"
 						className="row-span-2 h-auto object-cover"
+						placeholder="blur"
+						blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(110, 110))}`}
 					/>
 				)}
 				<h3 className=" md:text-m text-base">{item.item.title}</h3>
