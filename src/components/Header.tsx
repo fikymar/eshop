@@ -15,8 +15,7 @@ import { cartActions } from '../context/cart-slice';
 import IconButton from './IconButton';
 
 const Header = () => {
-	const [isEnabled, setIsEnabled] = useState(false);
-	const { scrollY } = useScroll();
+	const [menuOpen, setMenuOpen] = useState(false);
 	const firebaseAuth = getAuth(app);
 	const provider = new GoogleAuthProvider();
 	const dispatch = useDispatch();
@@ -31,7 +30,7 @@ const Header = () => {
 	const login = async () => {
 		if (!isLoggedIn && !open) {
 			const { user } = await signInWithPopup(firebaseAuth, provider);
-			console.log(user);
+			// console.log(user);
 			dispatch(userActions.setUser(user));
 			dispatch(authActions.login());
 		}
@@ -41,8 +40,6 @@ const Header = () => {
 				dispatch(cartActions.closeCart());
 			}
 		} else return;
-		console.log('header log', isLoggedIn);
-		console.log('user log open', open);
 	};
 
 	const showCartModal = () => {
@@ -52,6 +49,12 @@ const Header = () => {
 			}
 			dispatch(cartActions.openCart());
 		} else dispatch(cartActions.closeCart());
+	};
+
+	const showMenu = () => {
+		if (!menuOpen) {
+			setMenuOpen(true);
+		} else setMenuOpen(false);
 	};
 
 	const MenuItems = [
@@ -64,22 +67,82 @@ const Header = () => {
 		<>
 			<motion.header className="sticky top-0 z-50 flex h-fit w-full items-center justify-between p-2 backdrop-blur-sm md:px-4">
 				{/* mobile nav */}
-				<div className="md:hidden">
-					<button className="group relative">
+				<div className="z-50 md:hidden">
+					<button className="group relative" onClick={showMenu}>
 						<div className="relative flex h-[50px] w-[50px] transform items-center justify-center overflow-hidden rounded-full bg-pink-500 shadow-md ring-0 ring-gray-300 ring-opacity-30 transition-all duration-200 hover:ring-8 group-focus:ring-4">
 							<div className="flex h-[20px] w-[20px] origin-center transform flex-col justify-between overflow-hidden transition-all duration-300">
-								<div className="h-[2px] w-7 origin-left transform bg-white transition-all duration-300 group-focus:translate-x-10"></div>
-								<div className="h-[2px] w-7 transform rounded bg-white transition-all delay-75 duration-300 group-focus:translate-x-10"></div>
-								<div className="h-[2px] w-7 origin-left transform bg-white transition-all delay-150 duration-300 group-focus:translate-x-10"></div>
-
-								<div className="absolute top-2.5 flex w-0 -translate-x-10 transform items-center justify-between transition-all duration-500 group-focus:w-12 group-focus:translate-x-0">
-									<div className="absolute h-[2px] w-5 rotate-0 transform bg-white transition-all delay-300 duration-500 group-focus:rotate-45"></div>
-									<div className="absolute h-[2px] w-5 -rotate-0 transform bg-white transition-all delay-300 duration-500 group-focus:-rotate-45"></div>
+								<div
+									className={`h-[2px] w-7 origin-left transform bg-white transition-all duration-300 ${
+										menuOpen && 'translate-x-10'
+									}`}
+								></div>
+								<div
+									className={`h-[2px] w-7 transform rounded bg-white transition-all delay-75 duration-300 ${
+										menuOpen && 'translate-x-10'
+									}`}
+								></div>
+								<div
+									className={`h-[2px] w-7 origin-left transform bg-white transition-all delay-150 duration-300 ${
+										menuOpen && 'translate-x-10'
+									}`}
+								></div>
+								<div
+									className={`absolute top-2.5 flex w-0  transform items-center justify-between transition-all duration-500 ${
+										menuOpen ? 'w-12 translate-x-0' : '-translate-x-10'
+									}`}
+								>
+									<div
+										className={`absolute h-[2px] w-5  transform bg-white transition-all delay-300 duration-500 ${
+											menuOpen ? 'rotate-45' : 'rotate-0'
+										}`}
+									></div>
+									<div
+										className={`${menuOpen ? '-rotate-45' : '-rotate-0'} absolute h-[2px] w-5
+											 transform bg-white transition-all 
+											delay-300
+										duration-500`}
+									></div>
 								</div>
 							</div>
 						</div>
 					</button>
 				</div>
+
+				<AnimatePresence>
+					{menuOpen && (
+						<motion.div
+							className="fixed top-0 left-0 z-10 h-screen w-screen bg-yellow-500"
+							initial={{ x: -1000 }}
+							animate={{ x: 0 }}
+							exit={{ x: -1000 }}
+							transition={{
+								type: 'spring',
+								stiffness: 300,
+								damping: 20,
+							}}
+						>
+							<nav className="w-full text-lg font-semibold">
+								<ul className="items-left mt-20 flex w-fit flex-col">
+									{MenuItems.map((item) => {
+										return (
+											<li
+												key={item.title}
+												className="active group flex cursor-pointer  flex-col  border-opacity-0 p-4  duration-200  dark:text-white "
+											>
+												<Link href={item.link}>{item.title}</Link>
+												<p
+													className={`underline-h ${
+														router.pathname === item.link ? 'w-[1ch]' : 'w-0'
+													} group-hover:w-full`}
+												></p>
+											</li>
+										);
+									})}
+								</ul>
+							</nav>
+						</motion.div>
+					)}
+				</AnimatePresence>
 
 				{/* logo */}
 
@@ -94,13 +157,14 @@ const Header = () => {
 					</span>
 				</Link>
 
+				{/* dektop nav */}
 				<nav className="nav  hidden text-lg font-semibold md:flex ">
 					<ul className="flex items-center">
 						{MenuItems.map((item) => {
 							return (
 								<li
 									key={item.title}
-									className="active cursor-pointerflex group  flex-col  border-opacity-0 p-4  duration-200  dark:text-white "
+									className="active group flex cursor-pointer  flex-col  border-opacity-0 p-4  duration-200  dark:text-white "
 								>
 									<Link href={item.link}>{item.title}</Link>
 									<p
