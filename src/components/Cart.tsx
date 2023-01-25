@@ -13,33 +13,29 @@ import ItemCart from './ItemCart';
 import { shimmer, toBase64 } from '../utils/placeholderImg';
 
 const CartContainer = () => {
+	const [total, setTotal] = useState();
+	const [disableBtn, setDisableBtn] = useState(false);
 	const dispatch = useDispatch();
 	const cartItems = useSelector((state: any) => state.cartData.items);
 	const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
 	const firebaseAuth = getAuth(app);
 	const provider = new GoogleAuthProvider();
-	const [total, setTotal] = useState();
-
-	const clearCart = () => {
-		dispatch(cartActions.clearCartItems);
-		console.log('delete itemr', cartItems);
-	};
 
 	useEffect(() => {
 		let totalPrice = cartItems.reduce(function (acc: number, item: CartItem) {
 			return acc + item.qty * parseInt(item.price);
 		}, 0);
 		setTotal(totalPrice);
-
-		console.log(total);
 	}, [total, cartItems]);
 
 	const login = async () => {
 		if (!isLoggedIn) {
+			setDisableBtn(true);
 			const { user } = await signInWithPopup(firebaseAuth, provider);
-			console.log(user);
+			// console.log(user);
 			dispatch(userActions.setUser(user));
 			dispatch(authActions.login());
+			setDisableBtn(false);
 		} else return;
 	};
 
@@ -57,7 +53,6 @@ const CartContainer = () => {
 		>
 			{cartItems.length > 0 ? (
 				<>
-					<button onClick={() => clearCart()}>clear cart</button>
 					<div className="scrollbar-hide h-[60vh] overflow-y-scroll py-5 shadow-inner">
 						<div className="grid h-full w-full gap-2 p-4 ">
 							{cartItems.map((item: any) => {
@@ -67,19 +62,18 @@ const CartContainer = () => {
 					</div>
 				</>
 			) : (
-				<>
+				<div className="h-full w-full">
 					<h2 className="absolute top-[8rem] left-5 z-50 text-xl text-zinc-500">
 						Let´s add something in here!
 					</h2>
 					<Image
-						src="/imgs/emptycart.jpg"
+						src="/imgs/emptycart.webp"
 						fill
 						className="z-0 object-cover object-[center_top]"
 						alt="empty cart"
-						placeholder="blur"
-						blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1500, 800))}`}
+						priority
 					/>
-				</>
+				</div>
 			)}
 			<div className="my-4 flex items-center justify-between text-xl font-bold ">
 				<h4 className="">Total</h4>
@@ -88,9 +82,10 @@ const CartContainer = () => {
 			<div className="flex w-full justify-center">
 				<Button
 					value={!isLoggedIn ? 'Login to checkout' : 'Checkout'}
-					bgColor={!isLoggedIn ? 'bg-zinc-400' : 'bg-pink-500'}
+					bgColor={!isLoggedIn ? 'bg-sky-500' : 'bg-pink-500'}
 					onClick={login}
-					addClass="my-4"
+					addClass={`my-4 ${disableBtn ? 'cursor-not-allowed' : 'cursor-pointer'} `}
+					disabled={disableBtn ? true : false}
 				/>
 			</div>
 		</motion.div>

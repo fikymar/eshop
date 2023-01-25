@@ -33,10 +33,6 @@ export const cartSlice = createSlice({
 				} else state.items.push({ ...payload, qty: 1 });
 			}
 		},
-		clearCartItems(state) {
-			state.items.length = 0;
-			console.log('clear');
-		},
 		deleteItemFromCart(state, { payload }) {
 			state.items = state.items.filter(({ id }) => id != payload);
 		},

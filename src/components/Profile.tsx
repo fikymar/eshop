@@ -15,7 +15,7 @@ const Profile = () => {
 			dispatch(userActions.closeProfile());
 		}
 
-		console.log('profile log', isLoggedIn);
+		// console.log('profile log', isLoggedIn);
 	};
 
 	const logout = () => {
@@ -24,8 +24,9 @@ const Profile = () => {
 			dispatch(userActions.closeProfile());
 		}
 
-		console.log('profile log', isLoggedIn);
+		// console.log('profile log', isLoggedIn);
 	};
+
 	return (
 		<motion.div
 			className="fixed top-20 right-0 z-40 mr-0 ml-auto  -mt-20 flex h-fit flex-col rounded-bl-xl bg-slate-100 px-4 pt-24 pb-4 dark:bg-zinc-600"
