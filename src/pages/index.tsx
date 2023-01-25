@@ -11,14 +11,6 @@ const Home: NextPage = () => {
 	const [title, setTitle] = useState('Home');
 
 	useEffect(() => {
-		// window.onblur = function () {
-		// 	setTitle("Where are you?");
-		// };
-
-		// window.onfocus = function () {
-		// 	setTitle("Focus");
-		// };
-
 		document.addEventListener('visibilitychange', (event) => {
 			if (document.visibilityState == 'visible') {
 				setTitle('We glad you are back');
@@ -65,12 +57,13 @@ const Home: NextPage = () => {
 					</div>
 					<div className="">
 						<Image
-							src="/imgs/purplelady.jpg"
+							src="/imgs/purplelady.webp"
 							width={500}
-							height={800}
+							height={300}
 							className="mx-auto mt-6  rounded-tl-full rounded-br-full "
 							alt="hero"
 							placeholder="blur"
+							priority
 							blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(500, 300))}`}
 						/>
 					</div>
