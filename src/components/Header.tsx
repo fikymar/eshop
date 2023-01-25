@@ -13,6 +13,7 @@ import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { Logo, Sun, Moon, Search, Cart } from '../constants/icons.js';
 import { cartActions } from '../context/cart-slice';
 import IconButton from './IconButton';
+import { set } from 'react-native-reanimated';
 
 const Header = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
