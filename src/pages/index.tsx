@@ -33,9 +33,9 @@ const Home: NextPage = () => {
 						<h1 className="text-4xl font-bold text-yellow-500">Happy shopping</h1>
 						<p className="ml-0 max-w-xl leading-relaxed text-gray-300 ">
 							This page is for demo purposes, created while learning redux. I am using next js, redux
-							toolkit for state managment, firestore as backend, tailwind for fast styling and
+							toolkit for state management, firestore as backend, tailwind for fast styling and
 							framer-motion for animations. You can login(google) in top right corner. Then you will have
-							access to your profile. You can add{' '}
+							access to your profile. You can also login via checkout button in cart. You can add{' '}
 							<Link className="underline transition hover:text-pink-500" href={routes.products}>
 								products
 							</Link>{' '}
@@ -43,7 +43,7 @@ const Home: NextPage = () => {
 							<Link href={routes.addItem} className="underline hover:text-pink-500">
 								here
 							</Link>
-							.
+							. And if your eyes feel tired, you can switch to darkmode.
 						</p>
 						<div className="flex justify-start gap-2 md:justify-center lg:justify-start">
 							<Link href={routes.addItem}>
@@ -60,7 +60,7 @@ const Home: NextPage = () => {
 							src="/imgs/purplelady.webp"
 							width={500}
 							height={300}
-							className="mx-auto mt-6  rounded-tl-full rounded-br-full "
+							className="mx-auto mt-6  h-auto w-auto  rounded-tl-full rounded-br-full"
 							alt="hero"
 							placeholder="blur"
 							priority

@@ -9,8 +9,8 @@ import { userActions } from '../context/user-slice';
 import Profile from './Profile';
 import { useTheme } from 'next-themes';
 import { routes } from '../constants/routes';
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
-import { Logo, Sun, Moon, Search, Cart } from '../constants/icons.js';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Sun, Moon, Cart } from '../constants/icons.js';
 import { cartActions } from '../context/cart-slice';
 import IconButton from './IconButton';
 
