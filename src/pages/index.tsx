@@ -25,6 +25,7 @@ const Home: NextPage = () => {
 			<Head>
 				<title>{title}</title>
 				<link rel="icon" href="/favicon.ico" />
+				<meta name="description" content="Training project" />
 			</Head>
 
 			<div className="h-fit bg-zinc-600 py-4 px-4 md:py-10 xl:mx-2 2xl:rounded-tr-full 2xl:rounded-bl-full 2xl:rounded-tl-lg 2xl:px-20">
@@ -47,7 +48,7 @@ const Home: NextPage = () => {
 						</p>
 						<div className="flex justify-start gap-2 md:justify-center lg:justify-start">
 							<Link href={routes.addItem}>
-								<Button value="Add product" bgColor="bg-yellow-500" />
+								<Button value="Add product" bgColor="bg-yellow-500" addClass="text-zinc-800" />
 							</Link>
 
 							<Link href={routes.products}>
