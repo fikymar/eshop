@@ -7,27 +7,30 @@ import Header from './Header';
 import { routes } from '../constants/routes';
 import CartContainer from './Cart';
 import { AnimatePresence } from 'framer-motion';
-import { cartActions } from '../context/cart-slice';
+import { motion } from 'framer-motion';
 
 const Layout = ({ children }: any) => {
 	const router = useRouter();
-	const dispatch = useDispatch();
-	const products = useSelector((state: any) => state.productsData);
 	const cartShow = useSelector((state: any) => state.cartData.cartShow);
-	const cartItems = useSelector((state: any) => state.cartData);
-
-	useEffect(() => {
-		console.log('cartItems', cartItems);
-	}, [cartShow, cartItems]);
 
 	return (
-		<div className="relative grid min-h-screen  auto-rows-auto bg-slate-100  text-zinc-800  dark:bg-zinc-500 dark:text-zinc-100">
+		<motion.div
+			initial={{ opacity: 0, x: -200, y: 0 }}
+			animate={{ opacity: 1, x: 0, y: 0 }}
+			exit={{ opacity: 0, x: 0, y: -100 }}
+			transition={{
+				type: 'spring',
+				stiffness: 260,
+				damping: 20,
+			}}
+			className="relative grid min-h-screen  auto-rows-auto bg-slate-100  text-zinc-800  dark:bg-zinc-500 dark:text-zinc-100"
+		>
 			<Header />
 			{children}
 
 			<AnimatePresence mode="wait"> {cartShow && <CartContainer />}</AnimatePresence>
 			{router.pathname !== routes.products && <Footer />}
-		</div>
+		</motion.div>
 	);
 };
 
