@@ -48,41 +48,58 @@ const Products: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			{loading ? (
-				<Loader />
+				<Loader full />
 			) : (
-				<div className="grid place-items-center">
-					<div className="relative z-10 h-full w-full items-center justify-center overflow-auto">
-						<div className="relative z-20 grid h-full w-full grid-cols-1 gap-4 p-2 md:grid-cols-2 md:grid-rows-4 md:p-4 lg:grid-cols-3 xl:grid-cols-4 ">
-							<Tilt
-								className="relative flex h-40 w-40 flex-col items-center justify-between self-center justify-self-center rounded-xl bg-sky-500 text-white dark:bg-yellow-600 md:h-80 md:w-80 "
-								tiltReverse={true}
-								glareColor="white"
-								perspective={500}
-								glareEnable={true}
-								glareMaxOpacity={0.45}
-								scale={1.02}
-								glarePosition="top"
-							>
-								<button onClick={() => setFilter('')} className="mt-2 font-bold  md:mt-5">
-									All
-								</button>
-								<button onClick={() => setFilter('men')} className="absolute top-1/2 left-2  md:left-5">
-									{Male}
-								</button>
-								<button
-									className="absolute top-1/2 right-2 md:right-5"
-									onClick={() => setFilter('women')}
+				<>
+					<div className="grid place-items-center">
+						<div className="relative z-10 h-full w-full items-center justify-center overflow-auto">
+							<div className="relative z-20 grid h-full w-full grid-cols-1 gap-4 p-2 md:grid-cols-2 md:grid-rows-4 md:p-4 lg:grid-cols-3 xl:grid-cols-4 ">
+								<Tilt
+									className="relative flex h-40 w-40 flex-col items-center justify-between self-center justify-self-center rounded-xl bg-sky-500 text-white dark:bg-yellow-600 md:h-80 md:w-80 "
+									tiltReverse={true}
+									glareColor="white"
+									perspective={500}
+									glareEnable={true}
+									glareMaxOpacity={0.45}
+									scale={1.02}
+									glarePosition="top"
 								>
-									{Female}
-								</button>
-								<button className="mb-2 md:mb-5" onClick={() => setFilter('kids')}>
-									{Kid}
-								</button>
-							</Tilt>
-							{filter !== ''
-								? products.products
-										.filter((product: any) => product.category === filter)
-										.map((product: any) => {
+									<button onClick={() => setFilter('')} className="mt-2 font-bold  md:mt-5">
+										All
+									</button>
+									<button
+										onClick={() => setFilter('men')}
+										className="absolute top-1/2 left-2  md:left-5"
+									>
+										{Male}
+									</button>
+									<button
+										className="absolute top-1/2 right-2 md:right-5"
+										onClick={() => setFilter('women')}
+									>
+										{Female}
+									</button>
+									<button className="mb-2 md:mb-5" onClick={() => setFilter('kids')}>
+										{Kid}
+									</button>
+								</Tilt>
+								{filter !== ''
+									? products.products
+											.filter((product: any) => product.category === filter)
+											.map((product: any) => {
+												return (
+													<ProductCard
+														key={product.id}
+														title={product.title}
+														category={product.category}
+														description={product.description}
+														imgURL={product.imgURL}
+														price={product.price}
+														id={product.id}
+													/>
+												);
+											})
+									: products.products.map((product: any) => {
 											return (
 												<ProductCard
 													key={product.id}
@@ -94,30 +111,13 @@ const Products: NextPage = () => {
 													id={product.id}
 												/>
 											);
-										})
-								: products.products.map((product: any) => {
-										return (
-											<ProductCard
-												key={product.id}
-												title={product.title}
-												category={product.category}
-												description={product.description}
-												imgURL={product.imgURL}
-												price={product.price}
-												id={product.id}
-											/>
-										);
-								  })}
+									  })}
+							</div>
 						</div>
-
-						<div
-							className="fixed inset-0 z-0 h-screen bg-cover bg-center"
-							// style={{ backgroundImage: "url('/imgs/bgrgrey.jpg')" }}
-						></div>
 					</div>
-				</div>
+					<Footer />
+				</>
 			)}
-			<Footer />
 		</div>
 	);
 };
