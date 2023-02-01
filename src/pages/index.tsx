@@ -48,7 +48,7 @@ const Home: NextPage = () => {
 						</p>
 						<div className="flex justify-start gap-2 md:justify-center lg:justify-start">
 							<Link href={routes.addItem}>
-								<Button value="Add product" bgColor="bg-yellow-500" addClass="text-zinc-800" />
+								<Button value="Add product" bgColor="bg-yellow-500" color="text-zinc-800" />
 							</Link>
 
 							<Link href={routes.products}>

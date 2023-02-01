@@ -43,7 +43,7 @@ const Profile = () => {
 				<p>{user.email}</p>
 			</div>
 			<div className="mt-10 flex gap-2 ">
-				<Button bgColor="bg-yellow-500" addClass="" value="Close profile" onClick={close} />
+				<Button bgColor="bg-yellow-500" color="text-zinc-800" value="Close profile" onClick={close} />
 
 				<Button value="Logout" bgColor="bg-pink-500" onClick={logout} />
 			</div>

@@ -207,23 +207,25 @@ const Header = () => {
 					>
 						{theme === 'light' ? Sun : Moon}
 					</IconButton>
+
+					{/* TODO search function */}
 					{/* <Link href="">
 						<div className="relative h-6 md:h-8">{Search}</div>
 					</Link> */}
 
 					<IconButton addClass=" items-stretch p-2 border-none" onClick={showCartModal}>
-						{/* {cartItems.length > 0 ? (
+						{cartItems.length > 0 ? (
 							<div className=" absolute -top-2 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-pink-500 md:h-5 md:w-5">
 								<p className="text-[10px] font-bold text-white md:text-xs"> {cartItems.length}</p>
 							</div>
-						) : null} */}
+						) : null}
 						{Cart}
 					</IconButton>
 
 					{isLoggedIn ? (
 						<motion.img
 							whileTap={{ scale: 0.6 }}
-							src={user && user.photoURL ? `${user.photoURL}` : '/imgs/avatar.png'}
+							src={user && user.photoURL ? `${user.photoURL}` : '/imgs/avatar.webp'}
 							className="ml-2 h-7 w-7 cursor-pointer rounded-full drop-shadow md:h-9 md:w-9"
 							alt="userprofile"
 							onClick={login}
