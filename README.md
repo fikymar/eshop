@@ -1,4 +1,6 @@
-# Demo created while learning redux
+# Training project created while learning redux
+
+Demo https://shopiik.netlify.app/
 
 ## Technologies used
 
