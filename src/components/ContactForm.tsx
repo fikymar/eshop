@@ -217,7 +217,7 @@ const ContactForm = () => {
 				{/* Toggle Contact Form  Button */}
 				<div className="fixed right-4 bottom-4 flex items-center justify-end space-x-5 ">
 					<button
-						className="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-pink-500 text-white shadow-xl dark:bg-yellow-500"
+						className="flex h-[48px] w-[48px] items-center justify-center rounded-full bg-pink-500 text-white shadow-xl dark:bg-yellow-500 md:h-[64px] md:w-[64px]"
 						onClick={() => toggleContactModal()}
 					>
 						<AnimatePresence>
@@ -251,6 +251,7 @@ const ContactForm = () => {
 										height="28"
 										viewBox="0 0 28 28"
 										fill="none"
+										className="h-5 w-5 md:h-7 md:w-7"
 										xmlns="http://www.w3.org/2000/svg"
 									>
 										<path

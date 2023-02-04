@@ -8,7 +8,7 @@ import { routes } from '../constants/routes';
 import CartContainer from './Cart';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
-import ContactForm from './form';
+import ContactForm from './ContactForm';
 
 const Layout = ({ children }: any) => {
 	const router = useRouter();

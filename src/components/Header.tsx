@@ -69,7 +69,7 @@ const Header = () => {
 				{/* mobile nav */}
 				<div className="z-50 md:hidden">
 					<button className="group relative" onClick={showMenu}>
-						<div className="relative flex h-[50px] w-[50px] transform items-center justify-center overflow-hidden rounded-full bg-pink-500 shadow-md ring-0 ring-gray-300 ring-opacity-30 transition-all duration-200 hover:ring-8 group-focus:ring-4">
+						<div className="relative flex h-[48px] w-[48px] transform items-center justify-center overflow-hidden rounded-full bg-pink-500 shadow-md ring-0 ring-gray-300 ring-opacity-30 transition-all duration-200 hover:ring-8 group-focus:ring-4">
 							<div className="flex h-[20px] w-[20px] origin-center transform flex-col justify-between overflow-hidden transition-all duration-300">
 								<div
 									className={`h-[2px] w-7 origin-left transform bg-white transition-all duration-300 ${
@@ -129,7 +129,9 @@ const Header = () => {
 												key={item.title}
 												className="active group flex cursor-pointer  flex-col  border-opacity-0 p-4  duration-200  dark:text-white "
 											>
-												<Link href={item.link}>{item.title}</Link>
+												<Link href={item.link} onClick={showMenu}>
+													{item.title}
+												</Link>
 												<p
 													className={`underline-h ${
 														router.pathname === item.link ? 'w-[1ch]' : 'w-0'
