@@ -1,5 +1,5 @@
 import { setDoc, doc, getDocs, query, orderBy, collection } from 'firebase/firestore';
-import { IData } from '../constants/models';
+import { IContact, IData } from '../constants/models';
 import { firestore } from '../firebase.config';
 
 export const saveItem = async (data: IData) => {
@@ -14,4 +14,8 @@ export const getItems = async () => {
 	const items = await getDocs(query(collection(firestore, 'items'), orderBy('id', 'desc')));
 
 	return items.docs.map((doc) => doc.data());
+};
+
+export const saveMessage = async (data: IContact) => {
+	await setDoc(doc(firestore, 'message', `${Date.now()}`), data, { merge: true });
 };

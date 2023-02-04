@@ -8,6 +8,7 @@ import { routes } from '../constants/routes';
 import CartContainer from './Cart';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
+import ContactForm from './form';
 
 const Layout = ({ children }: any) => {
 	const router = useRouter();
@@ -29,6 +30,7 @@ const Layout = ({ children }: any) => {
 			{children}
 
 			<AnimatePresence mode="wait"> {cartShow && <CartContainer />}</AnimatePresence>
+			<ContactForm />
 			{router.pathname !== routes.products && <Footer />}
 		</motion.div>
 	);
