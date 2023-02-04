@@ -159,7 +159,7 @@ const CreateItem = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<form className="relative m-auto flex min-h-screen w-full flex-col items-center gap-2 px-4 pt-20 xl:w-1/2">
+			<form className="relative m-auto flex w-full flex-col items-center gap-2 px-4 pt-20 xl:w-1/2">
 				{fields && (
 					<p
 						className={`absolute top-0 w-full rounded-lg bg-slate-200 p-4 text-center text-base  ${
@@ -235,7 +235,7 @@ const CreateItem = () => {
 					)}
 				</div>
 
-				<progress className="progressBar z-[60]" value={uploadProgress} max="100">
+				<progress className="progressBar " value={uploadProgress} max="100">
 					{uploadProgress}
 				</progress>
 
