@@ -55,7 +55,7 @@ const Products: NextPage = () => {
 						<div className="relative z-10 h-full w-full items-center justify-center overflow-auto">
 							<div className="relative z-20 grid h-full w-full grid-cols-1 gap-4 p-2 md:grid-cols-2 md:grid-rows-4 md:p-4 lg:grid-cols-3 xl:grid-cols-4 ">
 								<Tilt
-									className="relative flex h-40 w-40 flex-col items-center justify-between self-center justify-self-center rounded-xl bg-sky-500 text-white dark:bg-yellow-600 md:h-80 md:w-80 "
+									className="relative flex h-40 w-40 flex-col items-center justify-between self-center justify-self-center rounded-xl bg-sky-500 text-white dark:bg-yellow-500 md:h-80 md:w-80 "
 									tiltReverse={true}
 									glareColor="white"
 									perspective={500}

@@ -6,11 +6,9 @@ import { userActions } from '../context/user-slice';
 import { authActions } from '../context/auth-slice';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { motion } from 'framer-motion';
-import { cartActions } from '../context/cart-slice';
 import Button from './button';
 import { CartItem } from '../constants/models';
 import ItemCart from './ItemCart';
-import { shimmer, toBase64 } from '../utils/placeholderImg';
 
 const CartContainer = () => {
 	const [total, setTotal] = useState();

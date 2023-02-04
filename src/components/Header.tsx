@@ -65,7 +65,7 @@ const Header = () => {
 
 	return (
 		<>
-			<motion.header className="sticky top-0 z-50 flex h-fit w-full items-center justify-between p-2 backdrop-blur-sm md:px-4">
+			<motion.header className="backdrop--sm sticky top-0 z-50 flex h-fit w-full items-center justify-between p-2 md:px-4">
 				{/* mobile nav */}
 				<div className="z-50 md:hidden">
 					<button className="group relative" onClick={showMenu}>
@@ -213,9 +213,9 @@ const Header = () => {
 						<div className="relative h-6 md:h-8">{Search}</div>
 					</Link> */}
 
-					<IconButton addClass=" items-stretch p-2 border-none" onClick={showCartModal}>
+					<IconButton addClass=" relative items-stretch p-2 border-none" onClick={showCartModal}>
 						{cartItems.length > 0 ? (
-							<div className=" absolute -top-2 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-pink-500 md:h-5 md:w-5">
+							<div className="absolute -top-2 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-pink-500 md:h-5 md:w-5">
 								<p className="text-[10px] font-bold text-white md:text-xs"> {cartItems.length}</p>
 							</div>
 						) : null}

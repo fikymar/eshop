@@ -43,3 +43,23 @@ body {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 }
+
+progress {
+	border-radius: 20px;
+	border-color: lightgrey;
+	border-width: 1px;
+	height: 10px;
+}
+
+progress::-webkit-progress-bar {
+	background-color: white;
+	border-radius: 20px;
+}
+progress::-webkit-progress-value {
+	background-color: rgb(236, 72, 153);
+	border-radius: 20px;
+}
+progress::-moz-progress-bar {
+	background-color: white;
+	border-radius: 20px;
+}
