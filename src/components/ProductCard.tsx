@@ -30,16 +30,14 @@ const ProductCard = ({ title, description, price, imgURL, category, id }: IData)
 			<p className="absolute left-4  text-sm text-sky-500  drop-shadow-md dark:text-yellow-500">{category}</p>
 			<h5 className=" absolute top-4 left-4  text-lg font-semibold ">{title}</h5>
 			<div className="relative col-start-1 col-end-1 row-span-1  h-full min-h-[300px] w-full md:h-full">
-				{imgURL && (
-					<Image
-						className="object-contain object-[center_-20px] pt-14 transition-transform duration-500  group-hover:scale-105 md:object-cover"
-						fill
-						src={imgURL}
-						alt="product image"
-						placeholder="blur"
-						blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(500, 500))}`}
-					/>
-				)}
+				<Image
+					className="object-contain object-[center_-20px] pt-14 transition-transform duration-500  group-hover:scale-105 md:object-cover"
+					fill
+					src={imgURL}
+					alt="product image"
+					placeholder="blur"
+					blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(500, 500))}`}
+				/>
 			</div>
 			<div className="row-ends-2 col-span-1 row-start-2 flex flex-col items-end  gap-1 py-4 pl-2 md:col-start-2 md:row-span-2">
 				<p className="my-auto self-end text-right text-base capitalize">{description}</p>

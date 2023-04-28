@@ -31,7 +31,7 @@ const Products: NextPage = () => {
 
 	useEffect(() => {
 		fetchProducts();
-
+		console.log(products);
 		document.addEventListener('visibilitychange', (event) => {
 			if (document.visibilityState == 'visible') {
 				setTitle('We glad you are back');
@@ -93,7 +93,7 @@ const Products: NextPage = () => {
 														title={product.title}
 														category={product.category}
 														description={product.description}
-														imgURL={product.imgURL}
+														imgURL={product.imgURL || product.img}
 														price={product.price}
 														id={product.id}
 													/>
@@ -106,7 +106,7 @@ const Products: NextPage = () => {
 													title={product.title}
 													category={product.category}
 													description={product.description}
-													imgURL={product.imgURL}
+													imgURL={product.imgURL || product.img}
 													price={product.price}
 													id={product.id}
 												/>

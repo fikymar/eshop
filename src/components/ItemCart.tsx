@@ -50,7 +50,7 @@ const ItemCart = (item: any) => {
 			<div className="grid h-[160px] grid-cols-3 grid-rows-1 items-center justify-between gap-1 rounded-lg border-2 border-transparent bg-slate-100 p-4 transition   hover:shadow-md dark:bg-zinc-500 ">
 				{item.item.imgURL && (
 					<Image
-						src={item.item.imgURL}
+						src={item.item.imgURL || item.item - img}
 						width={100}
 						height={110}
 						alt="product image"
