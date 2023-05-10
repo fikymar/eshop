@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import Button from './button';
 import { CartItem } from '../constants/models';
 import ItemCart from './ItemCart';
+import getStripe from '../../lib/getStripe';
 
 const CartContainer = () => {
 	const [total, setTotal] = useState();
@@ -20,6 +21,7 @@ const CartContainer = () => {
 	const provider = new GoogleAuthProvider();
 
 	const handleCheckout = async () => {
+		const stripe = await getStripe();
 		setDisableBtn(true);
 		const response = await fetch('/api/stripe', {
 			method: 'POST',
