@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { app } from '../firebase.config';
@@ -19,6 +19,21 @@ const CartContainer = () => {
 	const firebaseAuth = getAuth(app);
 	const provider = new GoogleAuthProvider();
 
+	const handleCheckout = async () => {
+		setDisableBtn(true);
+		const response = await fetch('/api/stripe', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(cartItems),
+		});
+
+		if (response.statusCode === 500) return;
+
+		const data = await response.json();
+		window.location.href = data.url;
+		setDisableBtn(false);
+	};
+
 	useEffect(() => {
 		let totalPrice = cartItems.reduce(function (acc: number, item: CartItem) {
 			return acc + item.qty * parseInt(item.price);
@@ -30,7 +45,6 @@ const CartContainer = () => {
 		if (!isLoggedIn) {
 			setDisableBtn(true);
 			const { user } = await signInWithPopup(firebaseAuth, provider);
-			// console.log(user);
 			dispatch(userActions.setUser(user));
 			dispatch(authActions.login());
 			setDisableBtn(false);
@@ -47,7 +61,7 @@ const CartContainer = () => {
 				stiffness: 260,
 				damping: 20,
 			}}
-			className="fixed top-0 right-0 z-40 h-screen min-h-screen w-full bg-sky-100 px-2  pt-[6rem]  shadow-md dark:bg-yellow-500 md:w-1/2 xl:w-4/12 2xl:w-3/12"
+			className="fixed top-0 right-0 z-40 h-auto min-h-screen w-full bg-sky-100 px-2 pt-[6rem] shadow-md  dark:bg-yellow-500   md:h-screen md:w-1/2 xl:w-4/12 2xl:w-3/12"
 		>
 			{cartItems.length > 0 ? (
 				<>
@@ -81,11 +95,22 @@ const CartContainer = () => {
 				<Button
 					value={!isLoggedIn ? 'Login to checkout' : 'Checkout'}
 					bgColor={!isLoggedIn ? 'bg-sky-500' : 'bg-pink-500'}
-					onClick={login}
+					onClick={!isLoggedIn ? login : handleCheckout}
 					addClass={`my-4 ${disableBtn ? 'cursor-not-allowed' : 'cursor-pointer'} `}
 					disabled={disableBtn ? true : false}
 				/>
 			</div>
+			{!isLoggedIn && (
+				<div className="flex w-full justify-center">
+					<Button
+						value="Checkout Without Login"
+						bgColor="bg-pink-500"
+						onClick={handleCheckout}
+						addClass={`my-4 ${disableBtn ? 'cursor-not-allowed' : 'cursor-pointer'} `}
+						disabled={disableBtn ? true : false}
+					/>
+				</div>
+			)}
 		</motion.div>
 	);
 };

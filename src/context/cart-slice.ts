@@ -36,6 +36,9 @@ export const cartSlice = createSlice({
 		deleteItemFromCart(state, { payload }) {
 			state.items = state.items.filter(({ id }) => id != payload);
 		},
+		deleteAllItemsFromCart(state) {
+			state.items = [];
+		},
 		increaseQtyOfItem(state, { payload }) {
 			state.items.map((item) => {
 				if (item.id === payload) {
