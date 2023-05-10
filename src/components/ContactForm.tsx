@@ -174,9 +174,9 @@ const ContactForm = () => {
 								<a className="cursor-pointer rounded-full bg-sky-500 p-2 transition hover:scale-110">
 									<svg
 										fill="currentColor"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
 										className="h-5 w-5"
 										viewBox="0 0 24 24"
 									>
@@ -186,9 +186,9 @@ const ContactForm = () => {
 								<a className="cursor-pointer rounded-full bg-sky-500 p-2 transition hover:scale-110">
 									<svg
 										fill="currentColor"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
 										className="h-5 w-5"
 										viewBox="0 0 24 24"
 									>
@@ -199,9 +199,9 @@ const ContactForm = () => {
 									<svg
 										fill="none"
 										stroke="currentColor"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
 										className="h-5 w-5"
 										viewBox="0 0 24 24"
 									>
